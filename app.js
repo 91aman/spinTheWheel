@@ -22,24 +22,23 @@ var LIST = [{
     src: "https://content.oneplus.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/4/_/4_2_4.png"
 }];
 
-var open_whatsapp = function () {
-    console.log('asd');
-    $.ajax({
-        type: 'HEAD',
-        url: 'whatsapp://send?text=text=Hello%20World!',
-        success: function () {
-            window.location = 'whatsapp://send?text=text=Hello%20World!';
-        },
-        error: function () {
-            alert("Whatspp not installed");
-        }
-    });
-};
-
 $(document).ready(function () {
 
     LIST.forEach(function (item) {
         $('#inner-wheel').append('<div class="sec"><img class="image" src=' + item.src + '></div>')
+    });
+
+    $('.share-click').click(function () {
+        $.ajax({
+            type: 'HEAD',
+            url: 'whatsapp://send?text=text=Hello%20World!',
+            success: function () {
+                window.location = 'whatsapp://send?text=text=Hello%20World!';
+            },
+            error: function () {
+                alert("Whatspp not installed");
+            }
+        });
     });
 
     $('#spin').click(function () {
@@ -55,28 +54,18 @@ $(document).ready(function () {
 
         console.log(LIST[a]);
 
+        $("#txt").addClass('hide');
+
+        var timeOutIntervalId = setTimeout(function () {
+            $("#txt")
+                .removeClass('hide')
+                .find('.text').html('You won a ' + LIST[a].label)
+        }, 6500);
+
+        console.log(timeOutIntervalId);
+
 
         $('#wheel .sec').each(function () {
-            var t = $(this);
-            var c = 0;
-            var n = 600;
-            var interval = setInterval(function () {
-                c++;
-                if (c === n) {
-                    clearInterval(interval);
-                    $("#txt").html('You won a ' + LIST[a].label + '<a onclick="open_whatsapp">Share via Whatsapp</a>');
-                }
-
-                var aoY = t.offset().top;
-
-                if (aoY < 23.89) {
-                    $('#spin').addClass('spin');
-                    setTimeout(function () {
-                        $('#spin').removeClass('spin');
-                    }, 100);
-                }
-            }, 10);
-
             $('#inner-wheel').css({
                 'transform': 'rotate(' + totalDegree + 'deg)'
             });

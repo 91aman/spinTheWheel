@@ -9,6 +9,11 @@ body{
 
 a{
     color:#34495e;
+    cursor: pointer;
+}
+
+.hide{
+    display: none;
 }
 
 #wrapper{
@@ -18,7 +23,10 @@ a{
 }
 
 #txt{
-    color:#000;
+    color: #000;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
 }
 
 #wheel{
