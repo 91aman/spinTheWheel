@@ -29,16 +29,21 @@ $(document).ready(function () {
     });
 
     $('.share-click').click(function () {
-        $.ajax({
-            type: 'HEAD',
-            url: 'whatsapp://send?text=text=Hello%20World!',
-            success: function () {
-                window.location = 'whatsapp://send?text=text=Hello%20World!';
-            },
-            error: function () {
-                alert("Whatspp not installed");
-            }
-        });
+        //$.ajax({
+        //    type: 'HEAD',
+        //    url: 'whatsapp://send?text=text=Hello%20World!',
+        //    success: function () {
+        //        window.location = 'whatsapp://send?text=text=Hello%20World!';
+        //    },
+        //    error: function () {
+        //        alert("Whatspp not installed");
+        //    }
+        //});
+
+        var text = 'abcd';
+        var url = 'url';
+        var message = encodeURIComponent(text) + " - " + encodeURIComponent(url);
+        window.location.href = "whatsapp://send?text=" + message;
     });
 
     $('#spin').click(function () {
